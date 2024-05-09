@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_anilgollewar_java_docker_build_tutorial_1715248944386-pr-trigger-input-set
+  identifier: Build_anilgollewar_java_docker_build_tutorial_1715248944386prtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: javaproject
+  pipeline:
+    identifier: Build_anilgollewar_java_docker_build_tutorial_1715248944386
+    properties:
+      ci:
+        codebase:
+          build:
+            type: PR
+            spec:
+              number: <+trigger.prNumber>
