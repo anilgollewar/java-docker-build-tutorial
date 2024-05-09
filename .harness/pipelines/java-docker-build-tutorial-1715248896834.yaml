@@ -10,37 +10,62 @@ pipeline:
         connectorRef: account.Github_OAuth_1715248808917
         repoName: anilgollewar/java-docker-build-tutorial
   stages:
-    - stage:
-        identifier: build
-        name: build
-        spec:
-          caching:
-            enabled: true
-          cloneCodebase: true
-          execution:
-            steps:
-              - step:
-                  identifier: echo
-                  name: echo
-                  spec:
-                    command: echo hello world
-                  timeout: ""
-                  type: Run
-              - step:
-                  identifier: dockerbuild
-                  name: docker_build
-                  spec:
-                    caching: true
-                    connectorRef: <+input>
-                    repo: hello/world
-                    tags:
-                      - latest
-                  timeout: ""
-                  type: BuildAndPushDockerRegistry
-          platform:
-            arch: Amd64
-            os: Linux
-          runtime:
-            spec: {}
-            type: Cloud
-        type: CI
+    - parallel:
+        - stage:
+            identifier: build
+            name: build
+            spec:
+              caching:
+                enabled: true
+              cloneCodebase: true
+              execution:
+                steps:
+                  - step:
+                      identifier: echo
+                      name: echo
+                      spec:
+                        command: echo hello world
+                      timeout: ""
+                      type: Run
+                  - step:
+                      identifier: dockerbuild
+                      name: docker_build
+                      spec:
+                        caching: true
+                        connectorRef: <+input>
+                        repo: hello/world
+                        tags:
+                          - latest
+                      timeout: ""
+                      type: BuildAndPushDockerRegistry
+              platform:
+                arch: Amd64
+                os: Linux
+              runtime:
+                spec: {}
+                type: Cloud
+            type: CI
+        - stage:
+            name: devjavabuild
+            identifier: devjavabuild
+            description: ""
+            type: CI
+            spec:
+              cloneCodebase: true
+              platform:
+                arch: Amd64
+                os: Linux
+              runtime:
+                spec: {}
+                type: Cloud
+              execution:
+                steps:
+                  - step:
+                      type: BuildAndPushDockerRegistry
+                      name: BuildAndPushDockerRegistry_1
+                      identifier: BuildAndPushDockerRegistry_1
+                      spec:
+                        connectorRef: dockercon
+                        repo: anilgollewar/javaproject
+                        tags:
+                          - a
