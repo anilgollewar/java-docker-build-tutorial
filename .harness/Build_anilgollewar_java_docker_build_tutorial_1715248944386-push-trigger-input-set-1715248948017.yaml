@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_anilgollewar_java_docker_build_tutorial_1715248944386-push-trigger-input-set
+  identifier: Build_anilgollewar_java_docker_build_tutorial_1715248944386pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: javaproject
+  pipeline:
+    identifier: Build_anilgollewar_java_docker_build_tutorial_1715248944386
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
