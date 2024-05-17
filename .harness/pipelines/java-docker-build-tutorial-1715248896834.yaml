@@ -53,11 +53,11 @@ pipeline:
             spec:
               cloneCodebase: true
               platform:
-                arch: Amd64
                 os: Linux
+                arch: Amd64
               runtime:
-                spec: {}
                 type: Cloud
+                spec: {}
               execution:
                 steps:
                   - step:
@@ -66,6 +66,6 @@ pipeline:
                       identifier: BuildAndPushDockerRegistry_1
                       spec:
                         connectorRef: dockercon
-                        repo: anilgollewar/javaproject
+                        repo: 13491a03c5/javaproject
                         tags:
-                          - a
+                          - "1"
